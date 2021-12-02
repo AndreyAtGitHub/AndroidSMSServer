@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">AndroidSMSServer</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="pref_key_server_switch">pref_key_server_switch</string>
+    <string name="pref_key_port_no">pref_key_port_no</string>
+    <string name="pref_key_send_sms_permission">pref_key_send_sms_permission</string>
+
+    <string name="shared_pref_file">shared_pref_file</string>
+    <string name="pref_key_secure_connection">pref_key_secure_connection</string>
+    <string name="pref_key_password_switch">pref_key_password_switch</string>
+    <string name="pref_key_password">pref_key_password</string>
+</resources>

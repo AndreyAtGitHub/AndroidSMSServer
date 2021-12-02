@@ -1,0 +1,59 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="Server Options">
+
+        <EditTextPreference
+            app:key="@string/pref_key_port_no"
+            app:title="Port No"
+            app:dialogMessage="Enter Port No between 1024 to 49151"
+            app:defaultValue="8080"
+            android:icon="@drawable/ic_baseline_info_24"
+            app:useSimpleSummaryProvider="true" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Permissions">
+
+
+        <Preference
+            app:key="@string/pref_key_send_sms_permission"
+            app:title="SMS permission"
+            app:icon="@drawable/ic_baseline_sms_24"
+            app:summary="Allow SMS server to send SMS"
+
+            />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Security">
+
+
+        <SwitchPreferenceCompat
+            app:key="@string/pref_key_secure_connection"
+            app:title="Use secure connection"
+            app:icon="@drawable/ic_baseline_lock_24"
+            app:summary="Communication will be encrypted\n (TSL/SSL)"
+
+            />
+
+        <SwitchPreferenceCompat
+            app:key="@string/pref_key_password_switch"
+            app:title="Set Password"
+            app:dependency="@string/pref_key_secure_connection"
+            />
+
+        <EditTextPreference
+            app:key="@string/pref_key_password"
+            app:title="Password"
+            app:summary="Set password"
+            app:dialogMessage="Enter password of at least 4 characters"
+            app:dependency="@string/pref_key_password_switch"
+            />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
