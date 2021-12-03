@@ -5,7 +5,7 @@ This app turns Android device into SMS gateway which allows sending SMS through 
 
 
 # Usage
-To send SMS, HTTP client must provide `phone` and `message` parameters to `/sendSMS` with `POST` method
+To send SMS, HTTP client must provide `phone` and `message` parameters to path `/sendSMS` via `POST` method
 
 # Example
 POST `https://192.168.0.102:8081/sendSMS`
@@ -14,3 +14,7 @@ with `POST` body containing following paramaters
 
  * `phone` = "0347123456"
  * `message` = "Hello your verification code is 2341"       
+
+
+# Download APK
+Download APK from [release section](https://github.com/umer0586/AndroidSMSServer/releases) *(require Android 5.0)*
