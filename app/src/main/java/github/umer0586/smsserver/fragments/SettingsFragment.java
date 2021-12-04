@@ -162,9 +162,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 {
 
                     final String message = "This app uses self signed certificate\n"+
-                                            "You have to ignore certificate check at client side \n" +
-                                            "or Add certificate to client trust store\n" +
-                                            "Download certificate from github";
+                                            "You have to ignore certificate check at client side " +
+                                            "or Add certificate to client trust store\n\n" +
+                                            "Download certificate from\n\n" +
+                                            "https://github.com/umer0586/AndroidSMSServer";
 
                     new AlertDialog.Builder(getContext())
                             .setTitle("Security")
