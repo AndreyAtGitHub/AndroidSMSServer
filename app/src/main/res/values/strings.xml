@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SMS server</string>
-    <string name="title_activity_settings">SettingsActivity</string>
 
     <string name="pref_key_server_switch">pref_key_server_switch</string>
     <string name="pref_key_port_no">pref_key_port_no</string>
