@@ -250,7 +250,7 @@ public class SMSServer extends NanoHTTPD {
         //blocking call
         final HashMap<String,Object> resultMap = smsSender.sendSMS(phone,message);
         final String status = (String) resultMap.get("status");
-        final boolean sentOrDeliveryFailed = status.equals(SMSSender.STATUS_SENT_FAIL) || status.equals(SMSSender.STATUS_DELIVERY_FAIL);
+        final boolean sentFailed = status.equals(SMSSender.STATUS_SENT_FAIL);
 
 
         if(status.equals(SMSSender.STATUS_EXCEPTION_OCCURRED))
@@ -260,7 +260,7 @@ public class SMSServer extends NanoHTTPD {
                     toJSON(resultMap)
             );
 
-        if(sentOrDeliveryFailed)
+        if(sentFailed)
             return newFixedLengthResponse(
                     Response.Status.INTERNAL_ERROR,
                     "application/json",
