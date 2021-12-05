@@ -21,7 +21,7 @@ As per Android offical docs https://developer.android.com/about/versions/kitkat/
 
 [SMS_DELIVER_ACTION](https://developer.android.com/reference/android/provider/Telephony.Sms.Intents#SMS_DELIVER_ACTION) is intent which is broadcast by Android OS to apps when delivery report arrives from SMSC (sms center)
 
-So, Android SMS server app (non default sms app) has no way to notify http clients about whether delivery was successfull or not. It can only tell whether sms was successfully sent or not 😢
+So, Android SMS server app (non default sms app) has no way to notify http clients about whether delivery was successfull or not. It can only tell whether sms was successfully sent or not. 
 
 
 # Download APK
