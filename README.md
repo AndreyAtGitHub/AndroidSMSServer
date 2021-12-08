@@ -8,12 +8,25 @@ This app turns Android device into SMS gateway which allows sending SMS through 
 To send SMS, HTTP client must provide `phone` and `message` parameters to path `/sendSMS` via `POST` method
 
 # Example
-POST `https://192.168.0.102:8081/sendSMS`
 
-with `POST` body containing following paramaters
+Using Node Js a simple http `POST` request would be :-
+```javascript
+const request = require('request');
 
- * `phone` = "0347123456"
- * `message` = "Hello your verification code is 2341"       
+
+request.post({
+  url: 'http://192.168.0.101:8081/sendSMS',
+  form: {
+    phone: '03475144819',
+    message: 'Your verification code is 1234'
+  }
+}, function (err, httpResponse, body) { 
+
+    console.log(body);
+
+ })
+```
+Response body will always be in `JSON` formate.
 
 # Note
 As per Android offical docs https://developer.android.com/about/versions/kitkat/android-4.4#SMS 
