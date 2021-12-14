@@ -28,7 +28,7 @@ import github.umer0586.smsserver.SMSServer;
 import github.umer0586.smsserver.util.IpUtil;
 
 
-public class MainFragment extends Fragment implements SMSServer.onStartedListener , SMSServer.onStoppedListener{
+public class ServerFragment extends Fragment implements SMSServer.onStartedListener , SMSServer.onStoppedListener{
 
     // Button at center to start/stop server
     private MaterialButton startButton;

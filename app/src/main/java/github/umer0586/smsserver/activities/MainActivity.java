@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import github.umer0586.smsserver.R;
-import github.umer0586.smsserver.fragments.MainFragment;
+import github.umer0586.smsserver.fragments.ServerFragment;
 import github.umer0586.smsserver.fragments.SettingsFragment;
 
 /**
@@ -112,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
             switch(pos)
             {
 
-                case POSITION_MAIN_FRAGMENT: return new MainFragment();
+                case POSITION_MAIN_FRAGMENT: return new ServerFragment();
                 case POSITION_SETTING_FRAGMENT: return new SettingsFragment();
 
             }
 
-            return new MainFragment();
+            return new ServerFragment();
         }
 
         @Override
