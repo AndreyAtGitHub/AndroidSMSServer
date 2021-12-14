@@ -8,12 +8,25 @@ This app turns Android device into SMS gateway which allows sending SMS through 
 To send SMS, HTTP client must provide `phone` and `message` parameters to path `/sendSMS` via `POST` method
 
 # Example
-POST `https://192.168.0.102:8081/sendSMS`
 
-with `POST` body containing following paramaters
+Using Node Js a simple http `POST` request would be :-
+```javascript
+const request = require('request');
 
- * `phone` = "0347123456"
- * `message` = "Hello your verification code is 2341"       
+
+request.post({
+  url: 'http://192.168.0.101:8081/sendSMS',
+  form: {
+    phone: '03475144819',
+    message: 'Your verification code is 1234'
+  }
+}, function (err, httpResponse, body) { 
+
+    console.log(body);
+
+ })
+```
+Response body will always be in `JSON` formate.
 
 # Note
 As per Android offical docs https://developer.android.com/about/versions/kitkat/android-4.4#SMS 
@@ -21,7 +34,7 @@ As per Android offical docs https://developer.android.com/about/versions/kitkat/
 
 [SMS_DELIVER_ACTION](https://developer.android.com/reference/android/provider/Telephony.Sms.Intents#SMS_DELIVER_ACTION) is intent which is broadcast by Android OS to apps when delivery report arrives from SMSC (sms center)
 
-So, Android SMS server app (non default sms app) has no way to notify http clients about whether delivery was successfull or not. It can only tell whether sms was successfully sent or not 😢
+So, Android SMS server app (non default sms app) has no way to notify http clients about whether delivery was successfull or not. It can only tell whether sms was successfully sent or not. 
 
 
 # Download APK
