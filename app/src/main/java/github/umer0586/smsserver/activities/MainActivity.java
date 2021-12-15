@@ -3,11 +3,9 @@ package github.umer0586.smsserver.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
+
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,51 +16,80 @@ import github.umer0586.smsserver.fragments.ServerFragment;
 import github.umer0586.smsserver.fragments.SettingsFragment;
 
 /**
- *  This activity contains two Fragments (Displayed through viewPager)
+ *  This activity contains two Fragments
  *
- *  MainFragment : Contains start/Stop button at center which allows user to start/stop server
+ *  ServerFragment : Contains start/Stop button at center which allows user to start/stop server
  *  SettingsFragment : Contains settings
  */
 public class MainActivity extends AppCompatActivity {
 
-    private ViewPager2 viewPager;
 
-    // Fragments Positions
-    private static final int POSITION_MAIN_FRAGMENT = 0;
-    private static final int POSITION_SETTING_FRAGMENT = 1;
+
+    //Fragments
+    private ServerFragment serverFragment;
+    private SettingsFragment settingsFragment;
+
+    // active fragment
+    private Fragment activeFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupFragments();
+
+    }
+
+    private void setupFragments()
+    {
+        serverFragment = new ServerFragment();
+        settingsFragment = new SettingsFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, serverFragment, null)
+                .hide(serverFragment)
+                .commit();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, settingsFragment, null)
+                .hide(settingsFragment)
+                .commit();
+
+        getSupportFragmentManager().beginTransaction()
+                .show(serverFragment)
+                .commit();
+
+        activeFragment = serverFragment;
 
 
-        viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(new MyFragmentStateAdapter(this) );
+        // transaction.commit() is non blocking call therefore we need to make sure no transaction is pending
+        getSupportFragmentManager().executePendingTransactions();
+    }
 
-        viewPager.registerOnPageChangeCallback(new OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position)
-            {
+    private void showServerFragment()
+    {
+        getSupportFragmentManager().beginTransaction()
+                .hide(activeFragment)
+                .show(serverFragment)
+                .commit();
 
-                if(position == POSITION_MAIN_FRAGMENT)
-                {
-                    getSupportActionBar().setTitle("SMS Server");
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide back button from ActionBar
-                }
+        activeFragment = serverFragment;
+        getSupportActionBar().setTitle("SMS Server");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide back button from ActionBar
+    }
 
-                else if(position == POSITION_SETTING_FRAGMENT)
-                {
-                    getSupportActionBar().setTitle("Settings");
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true); // show back button on ActionBar
-                }
+    private void showSettingsFragment()
+    {
+        getSupportFragmentManager().beginTransaction()
+                .hide(activeFragment)
+                .show(settingsFragment)
+                .commit();
 
-            }
-        });
-
-
-
+        activeFragment = settingsFragment;
+        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // show back button on ActionBar
     }
 
     @Override
@@ -77,11 +104,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
         if(item.getItemId() == R.id.menu_item_settings)
-           viewPager.setCurrentItem(POSITION_SETTING_FRAGMENT);
+           showSettingsFragment();
 
         // When back button is pressed on ActionBar
         if(item.getItemId() == android.R.id.home)
-            viewPager.setCurrentItem(POSITION_MAIN_FRAGMENT);
+            showServerFragment();
 
 
 
@@ -96,34 +123,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         moveTaskToBack(true);
-    }
-
-    private class MyFragmentStateAdapter extends FragmentStateAdapter {
-
-
-        public MyFragmentStateAdapter(@NonNull FragmentActivity fragmentActivity)
-        {
-            super(fragmentActivity);
-        }
-
-        @Override
-        public Fragment createFragment(int pos) {
-
-            switch(pos)
-            {
-
-                case POSITION_MAIN_FRAGMENT: return new ServerFragment();
-                case POSITION_SETTING_FRAGMENT: return new SettingsFragment();
-
-            }
-
-            return new ServerFragment();
-        }
-
-        @Override
-        public int getItemCount() {
-            return 2;
-        }
     }
 
 
