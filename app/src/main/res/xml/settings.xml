@@ -45,8 +45,15 @@
             app:dependency="@string/pref_key_secure_connection"
             />
 
+       <!--
+
+            default value for password was missing which was causing
+            null pointer exception (app crash) on line 59 passwordPref.setSummary(getAsterisks(passwordPref.getText().length()));
+            https://github.com/umer0586/AndroidSMSServer/issues/1
+       -->
         <EditTextPreference
             app:key="@string/pref_key_password"
+            app:defaultValue="1234"
             app:title="Password"
             app:summary="Set password"
             app:dialogMessage="Enter password of at least 4 characters"
