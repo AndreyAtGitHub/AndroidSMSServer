@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupFragments();
+
+        // see https://stackoverflow.com/a/54978055/9193164
+        if(savedInstanceState == null)
+            setupFragments();
 
     }
 

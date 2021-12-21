@@ -14,9 +14,14 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidSMSServer">
+        <!--
+         see https://stackoverflow.com/a/51963216/9193164 for launchMode="singleTask"
+         app work fine while debugging but when an apk is generated app recreates activity when back button is pressed
+         -->
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

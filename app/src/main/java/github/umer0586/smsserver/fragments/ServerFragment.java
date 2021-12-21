@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,7 +55,7 @@ public class ServerFragment extends Fragment implements SMSServer.onStartedListe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_server, container, false);
     }
 
     @Override
@@ -205,7 +206,11 @@ public class ServerFragment extends Fragment implements SMSServer.onStartedListe
             showPulseAnimation();
             startButton.setTag("started");
             startButton.setText("STOP");
-            Snackbar.make(getView(),"SMS Server started",Snackbar.LENGTH_SHORT).show();
+
+            if (getView() != null)
+                Snackbar.make(getView(),"SMS Server started",Snackbar.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getContext(),"SMS Server started",Toast.LENGTH_SHORT).show();
 
         });
 
@@ -222,8 +227,11 @@ public class ServerFragment extends Fragment implements SMSServer.onStartedListe
             hidePulseAnimation();
             startButton.setTag("stopped");
             startButton.setText("START");
-            Snackbar.make(getView(),"SMS Server stopped",Snackbar.LENGTH_SHORT).show();
 
+            if(getView() != null)
+                Snackbar.make(getView(),"SMS Server stopped",Snackbar.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getContext(),"SMS Server stopped",Toast.LENGTH_SHORT).show();
         });
     }
 
