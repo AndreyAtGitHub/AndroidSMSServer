@@ -39,4 +39,4 @@ So, Android SMS server app (non default sms app) has no way to notify http clien
 
 
 # Download APK
-Download APK from [release section](https://github.com/umer0586/AndroidSMSServer/releases) *(require Android 5.0)*
+Download latest APK from [release section](https://github.com/umer0586/AndroidSMSServer/releases) *(require Android 5.0)*
